@@ -106,6 +106,13 @@ public class Page implements PageInterface {
         js.executeScript("arguments[0].scrollIntoView({block: 'start'});", element);
     }
 
+    protected List<String> extractTextFromListOfElements(By elements){
+        waitForLoadingToFinish();
+        return getListOfElements(elements).stream()
+                .map(WebElement::getText)
+                .toList();
+    }
+
     @Override
     public String getUrl(String expectedURL) {
         if(!expectedURL.equals("https://trade.multibank.io/")) {//we want to be sure that the page loaded and the url changed before getting it

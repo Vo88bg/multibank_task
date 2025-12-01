@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Bwin Test Suite" parallel="classes" thread-count="3">
     <test name="Test">
-        <parameter name="browser" value="chrome" />
-        <parameter name="url" value="" />
+        <parameter name="browser" value="firefox"/>
+        <parameter name="url" value=""/>
         <classes>
-
+            <class name="org.example.tests.NavigationTests"/>
+            <class name="org.example.tests.SpotTradingTests"/>
         </classes>
     </test>
 </suite>

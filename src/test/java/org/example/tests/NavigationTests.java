@@ -29,5 +29,12 @@ public class NavigationTests extends BaseTest {
         Assert.assertEquals(actualURL, expectedURL);
     }
 
+    @Test
+    public void verifyInstantBuyPopUp() {
+        Assert.assertTrue(dashboardPage
+                .clickInstantBuyNavItem()
+                .instantBuyPopUpIsDisplayed());
+    }
+
 
 }

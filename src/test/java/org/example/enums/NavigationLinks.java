@@ -6,8 +6,6 @@ public enum NavigationLinks {
     MARKET("/markets", "none"),
     TRADE_SPOT("/trade/BTC_USD", "trade"),
     TRADE_DERIVATIVES("/derivatives/BTCUST", "trade"),
-    TRADE_INSTANT_BUY("/trade/BTC_USD", "trade"),
-    TRADE_PANIC_SELL("/trade/BTC_USD", "trade"),
     TRADE_CONVERT("/trade/convert", "trade"),
     FEATURES_SPOT_EXCHANGE("https://multibank.io/features/spot-exchange", "features"),
     FEATURES_INSTITUTIONAL("https://multibank.io/features/institutional", "features"),

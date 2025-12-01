@@ -3,25 +3,44 @@ package org.example.pages;
 import org.example.enums.NavigationExpandableItems;
 import org.example.enums.NavigationLinks;
 import org.example.pages.aboutus.*;
-import org.example.pages.features.*;
-import org.example.pages.trading.*;
-import org.example.pages.trading.TradingPage;
+import org.example.pages.features.BuyAndSellPage;
+import org.example.pages.features.InstitutionalPage;
+import org.example.pages.features.SpotExchangePage;
+import org.example.pages.support.ContactUsPage;
+import org.example.pages.support.FAQPage;
+import org.example.pages.trade.ConvertPage;
+import org.example.pages.trade.DerivativesPage;
+import org.example.pages.trade.TradePage;
 import org.example.utils.Page;
 import org.example.utils.PageInterface;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static org.example.enums.CryptoCurrencies.*;
+
+import java.util.List;
+
 public class DashboardPage extends Page {
 
     private final String NAVIGATION_LINK = "a[href='%s']";
     private final By EXPANDABLE_MENU = By.className("p-8");
+    private final By INSTANT_BUY = By.xpath("//div[text()='Instant Buy']/ancestor::div[1]");
+    private final By SPOT_TRADING_TAB = By.xpath("//span[text()='Spot']");
+    private final By SHOW_MORE_BUTTON = By.cssSelector("div[class*=style_show-more-container] > button");
+    private final By TABLE_ROWS = By.cssSelector("tr[id*=-td]");
+    private final By SYMBOLS_CELL = By.cssSelector("td[id*=_base-td]");
+    private final By PRICE_CELL = By.cssSelector("td[id*=_price-td]");
+    private final By _24H_CHANGE_CELL = By.cssSelector("td[id*=change_in_price-td]");
+    private final By HIGH_CELL = By.cssSelector("td[id*=high_24hr-td]");
+    private final By LOW_CELL = By.cssSelector("td[id*=low_24hr-td]");
+    private final By LAST_7_DAYS = By.cssSelector("td[id*=base_volume-td]");
 
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
 
-    public void clickExpandableNavItem(NavigationLinks link){
-        switch (link.PARENT){
+    private void clickNavItemFromExpandableElement(NavigationLinks link) {
+        switch (link.PARENT) {
             case "trade":
                 waitForClickableElement(By.id(NavigationExpandableItems.TRADE.getID())).click();
                 break;
@@ -37,12 +56,66 @@ public class DashboardPage extends Page {
         }
     }
 
-    public PageInterface clickNavigationItem(NavigationLinks link){
-        if (link.PARENT.equals("none")){
+    public DashboardPage clickSpotTradingTab() {
+        waitForClickableElement(SPOT_TRADING_TAB).click();
+        return this;
+    }
+
+    public DashboardPage clickCurrencyTab(String id){
+        waitForElement(By.id(id)).click();
+        return this;
+    }
+
+    public DashboardPage expandNavItem(NavigationExpandableItems item) {
+        waitForClickableElement(By.id(item.getID())).click();
+        return this;
+    }
+
+    public DashboardPage clickShowMoreButton() {
+        waitForClickableElement(SHOW_MORE_BUTTON).click();
+        return this;
+    }
+
+    public boolean allPairsHaveCryptoSuffixes(String coin){
+        List<String> symbols = extractTextFromListOfElements(SYMBOLS_CELL);
+        for (String symbol : symbols) {
+            if(!symbol.endsWith(coin)) {
+                log.error("Symbol " + symbol + " does not end with " + coin);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean allPairsHaveFiatSuffixes(){
+        List<String> symbols = extractTextFromListOfElements(SYMBOLS_CELL);
+
+        for (String symbol : symbols) {
+            for (int i = 0; i < values().length; i++) {
+                System.out.println(symbol);
+                System.out.println(values()[i]);
+                if(symbol.endsWith(values()[i].getCURRENCY())){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public TradePage clickInstantBuyNavItem() {
+        expandNavItem(NavigationExpandableItems.TRADE);
+        waitForVisibleElement(EXPANDABLE_MENU);
+        waitForClickableElement(INSTANT_BUY).click();
+        return new TradePage(driver);
+    }
+
+    public PageInterface clickNavigationItem(NavigationLinks link) {
+        if (link.PARENT.equals("none")) {
             waitForClickableElement(By.cssSelector(String.format(NAVIGATION_LINK, link))).click();
             return this;
         } else {
-            clickExpandableNavItem(link);
+            clickNavItemFromExpandableElement(link);
             waitForVisibleElement(EXPANDABLE_MENU);
             waitForClickableElement(By.cssSelector(String.format(NAVIGATION_LINK, link))).click();
             return createPageBasedOnTheLink(link);
@@ -50,46 +123,26 @@ public class DashboardPage extends Page {
     }
 
 
-
-
-    public PageInterface createPageBasedOnTheLink(NavigationLinks link){
-        switch (link.toString()){
-            case "/trade/BTC_USD":
-                return new TradingPage(this.driver);
-            case "/markets":
-                return new MarketsPage(this.driver);
-            case "/":
-                return this;
-            case "/derivatives/BTCUST":
-                return new DerivativesPage(this.driver);
-            case "/trade/convert":
-                return new ConvertPage(this.driver);
-            case "https://multibank.io/features/spot-exchange":
-                return new SpotExchangePage(this.driver);
-            case "https://multibank.io/features/institutional":
-                return new InstitutionalPage(this.driver);
-            case "https://multibank.io/features/instant-buy":
-                return new BuyAndSellPage(this.driver);
-            case "https://multibank.io/about/why-multibank":
-                return new WhyMultibankPage(this.driver);
-            case "https://multibank.io/about/global-presence":
-                return new GlobalPresencePage(this.driver);
-            case "https://multibank.io/about/management":
-                return new ManagementPage(this.driver);
-            case "https://multibank.io/about/awards":
-                return new AwardsPage(this.driver);
-            case "https://multibank.io/about/sponsorship":
-                return new SponsorshipPage(this.driver);
-            case "https://multibank.io/about/blog":
-                return new BlogPage(this.driver);
-            case "https://multibank.io/about/milestones":
-                return new MileStonesPage(this.driver);
-            case "https://multibank.io/support/contact-us":
-                return this;
-            case "https://multibank.io/support/faq":
-                return this;
-                default: return this;
-        }
+    public PageInterface createPageBasedOnTheLink(NavigationLinks link) {
+        return switch (link.toString()) {
+            case "/trade/BTC_USD" -> new TradePage(this.driver);
+            case "/markets" -> new MarketsPage(this.driver);
+            case "/derivatives/BTCUST" -> new DerivativesPage(this.driver);
+            case "/trade/convert" -> new ConvertPage(this.driver);
+            case "https://multibank.io/features/spot-exchange" -> new SpotExchangePage(this.driver);
+            case "https://multibank.io/features/institutional" -> new InstitutionalPage(this.driver);
+            case "https://multibank.io/features/instant-buy" -> new BuyAndSellPage(this.driver);
+            case "https://multibank.io/about/why-multibank" -> new WhyMultibankPage(this.driver);
+            case "https://multibank.io/about/global-presence" -> new GlobalPresencePage(this.driver);
+            case "https://multibank.io/about/management" -> new ManagementPage(this.driver);
+            case "https://multibank.io/about/awards" -> new AwardsPage(this.driver);
+            case "https://multibank.io/about/sponsorship" -> new SponsorshipPage(this.driver);
+            case "https://multibank.io/about/blog" -> new BlogPage(this.driver);
+            case "https://multibank.io/about/milestones" -> new MileStonesPage(this.driver);
+            case "https://multibank.io/support/contact-us" -> new ContactUsPage(this.driver);
+            case "https://multibank.io/support/faq" -> new FAQPage(this.driver);
+            default -> this;
+        };
     }
 
 }
