@@ -15,10 +15,11 @@ import org.example.utils.Page;
 import org.example.utils.PageInterface;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import static org.example.enums.CryptoCurrencies.*;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
+
+import static org.example.enums.CryptoCurrencies.values;
 
 public class DashboardPage extends Page {
 
@@ -28,12 +29,9 @@ public class DashboardPage extends Page {
     private final By SPOT_TRADING_TAB = By.xpath("//span[text()='Spot']");
     private final By SHOW_MORE_BUTTON = By.cssSelector("div[class*=style_show-more-container] > button");
     private final By TABLE_ROWS = By.cssSelector("tr[id*=-td]");
+    private final By TABLE_HEADERS = By.cssSelector("div[class*=style_table] th");
     private final By SYMBOLS_CELL = By.cssSelector("td[id*=_base-td]");
-    private final By PRICE_CELL = By.cssSelector("td[id*=_price-td]");
-    private final By _24H_CHANGE_CELL = By.cssSelector("td[id*=change_in_price-td]");
-    private final By HIGH_CELL = By.cssSelector("td[id*=high_24hr-td]");
-    private final By LOW_CELL = By.cssSelector("td[id*=low_24hr-td]");
-    private final By LAST_7_DAYS = By.cssSelector("td[id*=base_volume-td]");
+
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -61,7 +59,7 @@ public class DashboardPage extends Page {
         return this;
     }
 
-    public DashboardPage clickCurrencyTab(String id){
+    public DashboardPage clickCurrencyTab(String id) {
         waitForElement(By.id(id)).click();
         return this;
     }
@@ -76,10 +74,10 @@ public class DashboardPage extends Page {
         return this;
     }
 
-    public boolean allPairsHaveCryptoSuffixes(String coin){
+    public boolean allPairsHaveCryptoSuffixes(String coin) {
         List<String> symbols = extractTextFromListOfElements(SYMBOLS_CELL);
         for (String symbol : symbols) {
-            if(!symbol.endsWith(coin)) {
+            if (!symbol.endsWith(coin)) {
                 log.error("Symbol " + symbol + " does not end with " + coin);
                 return false;
             }
@@ -88,14 +86,14 @@ public class DashboardPage extends Page {
         return true;
     }
 
-    public boolean allPairsHaveFiatSuffixes(){
+    public boolean allPairsHaveFiatSuffixes() {
         List<String> symbols = extractTextFromListOfElements(SYMBOLS_CELL);
 
         for (String symbol : symbols) {
             for (int i = 0; i < values().length; i++) {
                 System.out.println(symbol);
                 System.out.println(values()[i]);
-                if(symbol.endsWith(values()[i].getCURRENCY())){
+                if (symbol.endsWith(values()[i].getCURRENCY())) {
                     return false;
                 }
             }
@@ -144,5 +142,29 @@ public class DashboardPage extends Page {
             default -> this;
         };
     }
+
+
+    public boolean spotTablesAreVisible() {
+        List<WebElement> rows = getListOfElements(TABLE_ROWS);
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.cssSelector("td"));
+            softAssert.assertEquals(cells.size(), 7);
+            for (WebElement cell : cells)
+                if (!cell.isDisplayed()) return false;
+
+        }
+        return true;
+    }
+
+
+    public String extractSpotTableHeaders() {
+        return getListOfElements(TABLE_HEADERS)
+                .stream()
+                .map(WebElement::getText)
+                .filter(e -> !e.trim().isEmpty())//we want to remove the first header, as it is empty
+                .toList()
+                .toString();
+    }
+
 
 }

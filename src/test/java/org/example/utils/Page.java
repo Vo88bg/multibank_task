@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 import java.util.List;
@@ -21,6 +22,7 @@ public class Page implements PageInterface {
     protected JavascriptExecutor js;
     Actions actions;
     protected Logger log;
+    public SoftAssert softAssert;
 
     public Page(WebDriver driver) {
         this.driver = driver;
@@ -34,6 +36,7 @@ public class Page implements PageInterface {
                 .ignoring(NoSuchElementException.class)
                 .ignoring(ElementClickInterceptedException.class)
                 .ignoring(TimeoutException.class);
+        softAssert = new SoftAssert();
     }
 
     protected void populateInputField(By by, String text) {// it is not used, but I will leave it as a method that might be useful for future tests
@@ -106,7 +109,7 @@ public class Page implements PageInterface {
         js.executeScript("arguments[0].scrollIntoView({block: 'start'});", element);
     }
 
-    protected List<String> extractTextFromListOfElements(By elements){
+    protected List<String> extractTextFromListOfElements(By elements) {
         waitForLoadingToFinish();
         return getListOfElements(elements).stream()
                 .map(WebElement::getText)
@@ -115,7 +118,7 @@ public class Page implements PageInterface {
 
     @Override
     public String getUrl(String expectedURL) {
-        if(!expectedURL.equals("https://trade.multibank.io/")) {//we want to be sure that the page loaded and the url changed before getting it
+        if (!expectedURL.equals("https://trade.multibank.io/")) {//we want to be sure that the page loaded and the url changed before getting it
             explicitWait.until(ExpectedConditions.not(ExpectedConditions.urlToBe("https://trade.multibank.io/")));
         } else {//we also want to make sure that we will get the base url, when redirecting to such page
             explicitWait.until(ExpectedConditions.urlToBe("https://trade.multibank.io/"));

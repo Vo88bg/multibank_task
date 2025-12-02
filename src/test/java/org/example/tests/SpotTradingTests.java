@@ -1,11 +1,15 @@
 package org.example.tests;
 
+import org.example.enums.SpotTableHeaders;
 import org.example.pages.DashboardPage;
 import org.example.utils.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.example.enums.AllCurrencies.*;
 
@@ -26,12 +30,12 @@ public class SpotTradingTests extends BaseTest {
     }
 
     @DataProvider
-    public Object[] tabsDataProvider(){
+    public Object[] tabsDataProvider() {
         return new Object[]{
-          ALL.toString(),
-          BTC.toString(),
-          USDT.toString(),
-          FIAT.toString()
+                ALL.toString(),
+                BTC.toString(),
+                USDT.toString(),
+                FIAT.toString()
         };
     }
 
@@ -54,8 +58,23 @@ public class SpotTradingTests extends BaseTest {
     }
 
     @Test(dataProvider = "tabsDataProvider")
-    public void allSpotTablesAreVisible(){
+    public void allSpotTablesAreVisible(String tab) {
+        Assert.assertTrue(dashboardPage
+                .clickSpotTradingTab()
+                .clickCurrencyTab(tab.toLowerCase())
+                .clickShowMoreButton()
+                .spotTablesAreVisible());
+    }
+
+    @Test(dataProvider = "tabsDataProvider")
+    public void spotTableHeadersAreDisplayedInCorrectOrder(String tab) {
+        String actualHeaders = dashboardPage
+                .clickSpotTradingTab()
+                .clickCurrencyTab(tab.toLowerCase())
+                .extractSpotTableHeaders();
+        Assert.assertEquals(actualHeaders, SpotTableHeaders.getAllValuesAsString());
 
     }
+
 
 }
