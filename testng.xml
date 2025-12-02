@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Bwin Test Suite" parallel="classes" thread-count="3">
+<suite name="Multibank test suite" parallel="classes" thread-count="3">
     <test name="Test">
         <parameter name="browser" value="firefox"/>
         <parameter name="url" value=""/>
         <classes>
-            <class name="org.example.tests.NavigationTests"/>
             <class name="org.example.tests.SpotTradingTests"/>
+            <class name="org.example.tests.AboutUsTests"/>
+            <class name="org.example.tests.MarketingBannerTests"/>
+            <class name="org.example.tests.NavigationTests"/>
+<!--            <class name="org.example.tests.DownloadTests"/>-->
         </classes>
     </test>
 </suite>

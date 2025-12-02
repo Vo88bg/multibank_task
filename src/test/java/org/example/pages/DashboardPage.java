@@ -25,13 +25,14 @@ public class DashboardPage extends Page {
 
     private final String NAVIGATION_LINK = "a[href='%s']";
     private final By EXPANDABLE_MENU = By.className("p-8");
-    private final By INSTANT_BUY = By.xpath("//div[text()='Instant Buy']/ancestor::div[1]");
+    private final By INSTANT_BUY_LINK = By.xpath("//div[text()='Instant Buy']/ancestor::div[1]");
+    private final By WHY_MULTIBANK_LINK = By.xpath("//div[text()='Why Multibank?']/ancestor::div[1]");
     private final By SPOT_TRADING_TAB = By.xpath("//span[text()='Spot']");
     private final By SHOW_MORE_BUTTON = By.cssSelector("div[class*=style_show-more-container] > button");
     private final By TABLE_ROWS = By.cssSelector("tr[id*=-td]");
     private final By TABLE_HEADERS = By.cssSelector("div[class*=style_table] th");
     private final By SYMBOLS_CELL = By.cssSelector("td[id*=_base-td]");
-
+    private final By MARKETING_BANNERS = By.cssSelector(".slick-slide img");
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -104,8 +105,15 @@ public class DashboardPage extends Page {
     public TradePage clickInstantBuyNavItem() {
         expandNavItem(NavigationExpandableItems.TRADE);
         waitForVisibleElement(EXPANDABLE_MENU);
-        waitForClickableElement(INSTANT_BUY).click();
+        waitForClickableElement(INSTANT_BUY_LINK).click();
         return new TradePage(driver);
+    }
+
+    public WhyMultibankPage clickWhyMultiBankNavItem() {
+        expandNavItem(NavigationExpandableItems.ABOUT_US);
+        waitForVisibleElement(EXPANDABLE_MENU);
+        waitForClickableElement(WHY_MULTIBANK_LINK).click();
+        return new WhyMultibankPage(driver);
     }
 
     public PageInterface clickNavigationItem(NavigationLinks link) {
@@ -156,7 +164,6 @@ public class DashboardPage extends Page {
         return true;
     }
 
-
     public String extractSpotTableHeaders() {
         return getListOfElements(TABLE_HEADERS)
                 .stream()
@@ -166,5 +173,8 @@ public class DashboardPage extends Page {
                 .toString();
     }
 
+    public boolean marketingBannersAreVisible() {
+        return !getListOfElements(MARKETING_BANNERS).isEmpty();
+    }
 
 }

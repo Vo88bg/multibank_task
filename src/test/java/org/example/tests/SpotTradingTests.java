@@ -8,9 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.example.enums.AllCurrencies.*;
 
 public class SpotTradingTests extends BaseTest {
@@ -75,6 +72,4 @@ public class SpotTradingTests extends BaseTest {
         Assert.assertEquals(actualHeaders, SpotTableHeaders.getAllValuesAsString());
 
     }
-
-
 }
