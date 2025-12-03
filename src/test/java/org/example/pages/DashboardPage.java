@@ -33,12 +33,15 @@ public class DashboardPage extends Page {
     private final By TABLE_HEADERS = By.cssSelector("div[class*=style_table] th");
     private final By SYMBOLS_CELL = By.cssSelector("td[id*=_base-td]");
     private final By MARKETING_BANNERS = By.cssSelector(".slick-slide img");
+    private final By APPLE_APP_STORE_BUTTON = By.cssSelector("a[href*='https://apps.apple.com']");
+    private final By GOOGLE_PLAY_BUTTON = By.cssSelector("a[href*='https://play.google.com']");
 
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
 
     private void clickNavItemFromExpandableElement(NavigationLinks link) {
+        log.info("Expanding {}", link.PARENT);
         switch (link.PARENT) {
             case "trade":
                 waitForClickableElement(By.id(NavigationExpandableItems.TRADE.getID())).click();
@@ -56,21 +59,26 @@ public class DashboardPage extends Page {
     }
 
     public DashboardPage clickSpotTradingTab() {
+        log.info("Clicking spot trading tab");
         waitForClickableElement(SPOT_TRADING_TAB).click();
+        waitForElementToHaveClass( waitForClickableElement(SPOT_TRADING_TAB), "style_active").click();
         return this;
     }
 
     public DashboardPage clickCurrencyTab(String id) {
+        log.info("Clicking currency tab with id: {}", id);
         waitForElement(By.id(id)).click();
         return this;
     }
 
     public DashboardPage expandNavItem(NavigationExpandableItems item) {
+        log.info("Expanding navigation item: {}", item);
         waitForClickableElement(By.id(item.getID())).click();
         return this;
     }
 
     public DashboardPage clickShowMoreButton() {
+        log.info("Clicking show more button");
         waitForClickableElement(SHOW_MORE_BUTTON).click();
         return this;
     }
@@ -79,7 +87,6 @@ public class DashboardPage extends Page {
         List<String> symbols = extractTextFromListOfElements(SYMBOLS_CELL);
         for (String symbol : symbols) {
             if (!symbol.endsWith(coin)) {
-                log.error("Symbol " + symbol + " does not end with " + coin);
                 return false;
             }
         }
@@ -92,8 +99,6 @@ public class DashboardPage extends Page {
 
         for (String symbol : symbols) {
             for (int i = 0; i < values().length; i++) {
-                System.out.println(symbol);
-                System.out.println(values()[i]);
                 if (symbol.endsWith(values()[i].getCURRENCY())) {
                     return false;
                 }
@@ -103,6 +108,7 @@ public class DashboardPage extends Page {
     }
 
     public TradePage clickInstantBuyNavItem() {
+        log.info("Clicking 'Instant buy' navigation item");
         expandNavItem(NavigationExpandableItems.TRADE);
         waitForVisibleElement(EXPANDABLE_MENU);
         waitForClickableElement(INSTANT_BUY_LINK).click();
@@ -110,6 +116,7 @@ public class DashboardPage extends Page {
     }
 
     public WhyMultibankPage clickWhyMultiBankNavItem() {
+        log.info("Clicking 'Why multibank' navigation item");
         expandNavItem(NavigationExpandableItems.ABOUT_US);
         waitForVisibleElement(EXPANDABLE_MENU);
         waitForClickableElement(WHY_MULTIBANK_LINK).click();
@@ -117,6 +124,7 @@ public class DashboardPage extends Page {
     }
 
     public PageInterface clickNavigationItem(NavigationLinks link) {
+        log.info("Clicking navigation item: {}", link);
         if (link.PARENT.equals("none")) {
             waitForClickableElement(By.cssSelector(String.format(NAVIGATION_LINK, link))).click();
             return this;
@@ -175,6 +183,20 @@ public class DashboardPage extends Page {
 
     public boolean marketingBannersAreVisible() {
         return !getListOfElements(MARKETING_BANNERS).isEmpty();
+    }
+
+    public ExternalPage clickAppleAppStoreButton() {
+        log.info("Clicking Apple App Store button");
+        waitForClickableElement(APPLE_APP_STORE_BUTTON).click();
+        switchToTab(1);
+        return new ExternalPage(driver);
+    }
+
+    public ExternalPage clickGooglePlayButton() {
+        log.info("Clicking Google Play button");
+        waitForClickableElement(GOOGLE_PLAY_BUTTON).click();
+        switchToTab(1);
+        return new ExternalPage(driver);
     }
 
 }

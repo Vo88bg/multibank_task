@@ -12,7 +12,6 @@ public class TradePage extends Page {
         super(driver);
     }
 
-
     public boolean instantBuyPopUpIsDisplayed() {
         return waitForElement(INSTANT_BUY_POP_UP).isDisplayed();
     }

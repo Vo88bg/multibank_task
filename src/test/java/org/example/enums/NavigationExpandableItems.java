@@ -13,11 +13,10 @@ public enum NavigationExpandableItems {
         ID = id;
     }
 
-    public String getID(){
+    public String getID() {
         return this.ID;
 
     }
-
 
 
 }

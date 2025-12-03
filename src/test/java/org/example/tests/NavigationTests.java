@@ -25,7 +25,9 @@ public class NavigationTests extends BaseTest {
     @Test(dataProvider = "linksDataProvider")
     public void verifyCorrectRedirections(NavigationLinks link) {
         String expectedURL = link.getFormattedURL();
-        String actualURL = dashboardPage.clickNavigationItem(link).getUrl(expectedURL);
+        String actualURL = dashboardPage
+                .clickNavigationItem(link)
+                .getUrl(expectedURL);
         Assert.assertEquals(actualURL, expectedURL);
     }
 

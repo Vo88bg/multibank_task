@@ -16,8 +16,8 @@ public class MarketingBannerTests extends BaseTest {
     }
 
     @Test
-    public void verifyThatMarketingBannersAreVisible(){
-       Assert.assertTrue(dashboardPage.marketingBannersAreVisible());
+    public void verifyThatMarketingBannersAreVisible() {
+        Assert.assertTrue(dashboardPage.marketingBannersAreVisible());
     }
 
 }

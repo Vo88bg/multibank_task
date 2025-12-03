@@ -13,6 +13,12 @@ import org.testng.asserts.SoftAssert;
 import java.time.Duration;
 import java.util.List;
 
+/**
+ * Page class is the parent of all page objects all over the framework.
+ * It contains common methods and fields, that can be used in all other page objects.
+ * Every page object must inherit the Page class.
+ */
+
 public class Page implements PageInterface {
 
     private final By LOADING_ELEMENT = By.cssSelector("*[class*=_skeleton_]");
@@ -98,6 +104,12 @@ public class Page implements PageInterface {
         return element.getText();
     }
 
+    protected WebElement waitForElementToHaveClass(WebElement element, String className) {
+        log.info("Waiting for element {} to have class {}", element.getTagName(), className);
+        explicitWait.until(d -> element.getAttribute("class").contains(className));
+        return element;
+    }
+
     protected List<WebElement> getListOfElements(By elements) {
         log.info("Getting list of elements {}", elements.toString());
         waitForElement(elements);//wait for the first element of the list to appear
@@ -118,14 +130,20 @@ public class Page implements PageInterface {
 
     @Override
     public String getUrl(String expectedURL) {
+        explicitWait.until(ExpectedConditions.not(ExpectedConditions.urlToBe("about:blank")));
         if (!expectedURL.equals("https://trade.multibank.io/")) {//we want to be sure that the page loaded and the url changed before getting it
             explicitWait.until(ExpectedConditions.not(ExpectedConditions.urlToBe("https://trade.multibank.io/")));
         } else {//we also want to make sure that we will get the base url, when redirecting to such page
             explicitWait.until(ExpectedConditions.urlToBe("https://trade.multibank.io/"));
         }
         String url = driver.getCurrentUrl();
-
         assert url != null;
-        return url.split("\\?")[0];
+
+        return url.contains("google") ? url : url.split("\\?")[0];
+    }
+
+    public void switchToTab(int index) {
+        String tab = (String) driver.getWindowHandles().toArray()[index];
+        driver.switchTo().window(tab);
     }
 }

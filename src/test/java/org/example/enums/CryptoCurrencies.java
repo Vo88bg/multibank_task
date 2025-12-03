@@ -5,11 +5,12 @@ public enum CryptoCurrencies {
     USDT("USDT");
 
     final String CURRENCY;
-    CryptoCurrencies(String currency){
+
+    CryptoCurrencies(String currency) {
         this.CURRENCY = currency;
     }
 
-    public String getCURRENCY(){
+    public String getCURRENCY() {
         return this.CURRENCY;
     }
 }

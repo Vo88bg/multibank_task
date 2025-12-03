@@ -15,7 +15,7 @@ public enum AllCurrencies {
         this.CURRENCY = currency;
     }
 
-    public String getCURRENCY(){
+    public String getCURRENCY() {
         return this.CURRENCY;
     }
 }

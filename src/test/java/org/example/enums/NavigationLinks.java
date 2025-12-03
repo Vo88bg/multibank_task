@@ -22,14 +22,15 @@ public enum NavigationLinks {
 
     private final String LINK;
     public final String PARENT;
+
     NavigationLinks(String link, String parent) {
         this.LINK = link;
         this.PARENT = parent;
     }
 
-    public String getFormattedURL(){
+    public String getFormattedURL() {
 
-        if (this.LINK.startsWith("https://")){
+        if (this.LINK.startsWith("https://")) {
             return this.LINK;
         } else {
             return "https://trade.multibank.io" + this.LINK;
@@ -37,7 +38,7 @@ public enum NavigationLinks {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.LINK;
     }
 

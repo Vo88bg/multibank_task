@@ -9,6 +9,19 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+/**
+ * The BaseTest class controls the lifecycle of all tests in terms of launching and closing a test.
+ * It allows the choice of a browser, as well as closing the browser's instance.
+ * <p>
+ * Running the tests:
+ * - run all tests in parallel using the following command: mvn test -DsuiteXmlFile=testng.xml
+ * By default the test are executed in Chrome. In order to run the tests on another browser execute the command as follows: mvn test -DsuiteXmlFile=testng.xml -Dbrowser=firefox
+ * - run a single test via IDE configuration and make sure to pass -Dbrowser as parameter.
+ * <p>
+ * The available options for the -Dbrowser parameters are chrome, firefox and safari.
+ * If the desired browser is Google Chrome, then the parameter should be passed as follows: -Dbrowser=chrome
+ */
+
 public class BaseTest {
 
     protected WebDriver driver;
