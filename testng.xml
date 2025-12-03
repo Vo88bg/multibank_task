@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Multibank test suite" parallel="classes" thread-count="3">
     <listeners>
-        <listener class-name="org.testng.reporters.XMLReporter" />
-        <listener class-name="org.testng.reporters.SuiteHTMLReporter" />
+        <listener class-name="org.testng.reporters.TestHTMLReporter" />
     </listeners>
     <test name="Test">
         <parameter name="browser" value="firefox"/>
