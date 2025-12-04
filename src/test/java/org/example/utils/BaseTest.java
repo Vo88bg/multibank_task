@@ -28,7 +28,7 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"browser"})
-    public void initializeDriver(@Optional("firefox") String browser) {
+    public void initializeDriver(@Optional("chrome") String browser) {
 
         switch (browser) {
             case "chrome":

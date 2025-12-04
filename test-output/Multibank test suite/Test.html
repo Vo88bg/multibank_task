@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>30/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Dec 04 00:07:39 EET 2025</td>
+<td>Started on:</td><td>Thu Dec 04 08:44:25 EET 2025</td>
 </tr>
-<tr><td>Total time:</td><td>8 seconds (8995 ms)</td>
+<tr><td>Total time:</td><td>339 seconds (339712 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,81 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: /derivatives/BTCUST</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: a[href=&apos;/derivatives/BTCUST&apos;] (tried for 10 second(s) with 200 milliseconds interval)
+Build info: version: &apos;4.29.0&apos;, revision: &apos;5fc1ec94cb&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.8.0-85-generic&apos;, java.version: &apos;17.0.14&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:265)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at org.example.utils.Page.waitForClickableElement(Page.java:64)
+	at org.example.pages.DashboardPage.clickNavigationItem(DashboardPage.java:134)
+	at org.example.tests.NavigationTests.verifyCorrectRedirections(NavigationTests.java:29)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.&lt;init&gt;(FutureTask.java:151)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1153406201", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1153406201'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: a[href=&apos;/derivatives/BTCUST&apos;] (tried for 10 second(s) with 200 milliseconds interval)
+Build info: version: &apos;4.29.0&apos;, revision: &apos;5fc1ec94cb&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.8.0-85-generic&apos;, java.version: &apos;17.0.14&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:265)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at org.example.utils.Page.waitForClickableElement(Page.java:64)
+	at org.example.pages.DashboardPage.clickNavigationItem(DashboardPage.java:134)
+	at org.example.tests.NavigationTests.verifyCorrectRedirections(NavigationTests.java:29)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at --- Async.Stack.Trace --- (captured by IntelliJ IDEA debugger)
+	at java.base/java.util.concurrent.FutureTask.&lt;init&gt;(FutureTask.java:151)
+	at org.testng.internal.thread.graph.TestNGFutureTask.&lt;init&gt;(TestNGFutureTask.java:15)
+	at org.testng.internal.thread.graph.GraphOrchestrator.runNodes(GraphOrchestrator.java:58)
+	at org.testng.internal.thread.graph.GraphOrchestrator.run(GraphOrchestrator.java:46)
+	at org.testng.TestTaskExecutor.execute(TestTaskExecutor.java:69)
+	at org.testng.TestRunner.privateRun(TestRunner.java:722)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre></div></td>
+<td>11</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -76,10 +151,155 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
+<td title='org.example.tests.SpotTradingTests.allSpotTablesAreVisible()'><b>allSpotTablesAreVisible</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: USDT</td>
+<td></td>
+<td>16</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
 <td title='org.example.tests.AboutUsTests.whyMultibankPageLoadsAllInformationTest()'><b>whyMultibankPageLoadsAllInformationTest</b><br>Test class: org.example.tests.AboutUsTests</td>
 <td></td>
+<td>2</td>
+<td>org.example.tests.AboutUsTests@16d04d3d</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.spotTableHeadersAreDisplayedInCorrectOrder()'><b>spotTableHeadersAreDisplayedInCorrectOrder</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: USDT</td>
+<td></td>
+<td>2</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/support/contact-us</td>
+<td></td>
+<td>2</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.allSpotTablesAreVisible()'><b>allSpotTablesAreVisible</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: ALL</td>
+<td></td>
+<td>2</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/features/instant-buy</td>
+<td></td>
+<td>5</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/support/faq</td>
+<td></td>
+<td>2</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.MarketingBannerTests.verifyThatMarketingBannersAreVisible()'><b>verifyThatMarketingBannersAreVisible</b><br>Test class: org.example.tests.MarketingBannerTests</td>
+<td></td>
+<td>0</td>
+<td>org.example.tests.MarketingBannerTests@77fbd92c</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/about/global-presence</td>
+<td></td>
+<td>4</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.spotTableHeadersAreDisplayedInCorrectOrder()'><b>spotTableHeadersAreDisplayedInCorrectOrder</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: FIAT</td>
+<td></td>
+<td>7</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: /trade/BTC_USD</td>
+<td></td>
+<td>3</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.verifyCryptoTradingPairs()'><b>verifyCryptoTradingPairs</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: BTC</td>
+<td></td>
+<td>4</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/about/why-multibank</td>
+<td></td>
+<td>4</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/about/management</td>
+<td></td>
+<td>0</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/features/institutional</td>
+<td></td>
+<td>3</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/about/milestones</td>
+<td></td>
+<td>0</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.spotTableHeadersAreDisplayedInCorrectOrder()'><b>spotTableHeadersAreDisplayedInCorrectOrder</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: ALL</td>
+<td></td>
 <td>1</td>
-<td>org.example.tests.AboutUsTests@3911c2a7</td></tr>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.verifyFiatTradingPairs()'><b>verifyFiatTradingPairs</b><br>Test class: org.example.tests.SpotTradingTests</td>
+<td></td>
+<td>6</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/features/spot-exchange</td>
+<td></td>
+<td>7</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyInstantBuyPopUp()'><b>verifyInstantBuyPopUp</b><br>Test class: org.example.tests.NavigationTests</td>
+<td></td>
+<td>1</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.allSpotTablesAreVisible()'><b>allSpotTablesAreVisible</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: FIAT</td>
+<td></td>
+<td>8</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/about/sponsorship</td>
+<td></td>
+<td>2</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: /markets</td>
+<td></td>
+<td>0</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.spotTableHeadersAreDisplayedInCorrectOrder()'><b>spotTableHeadersAreDisplayedInCorrectOrder</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: BTC</td>
+<td></td>
+<td>1</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.verifyCryptoTradingPairs()'><b>verifyCryptoTradingPairs</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: USDT</td>
+<td></td>
+<td>9</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.SpotTradingTests.allSpotTablesAreVisible()'><b>allSpotTablesAreVisible</b><br>Test class: org.example.tests.SpotTradingTests<br>Parameters: BTC</td>
+<td></td>
+<td>1</td>
+<td>org.example.tests.SpotTradingTests@76508ed1</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/about/awards</td>
+<td></td>
+<td>2</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: https://multibank.io/about/blog</td>
+<td></td>
+<td>3</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: /</td>
+<td></td>
+<td>0</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
+<tr>
+<td title='org.example.tests.NavigationTests.verifyCorrectRedirections()'><b>verifyCorrectRedirections</b><br>Test class: org.example.tests.NavigationTests<br>Parameters: /trade/convert</td>
+<td></td>
+<td>4</td>
+<td>org.example.tests.NavigationTests@18078bef</td></tr>
 </table><p>
 </body>
 </html>
